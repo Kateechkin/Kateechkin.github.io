@@ -1,9 +1,17 @@
-<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="favicon.ico"><title>my-tilda-cleaner</title><link href="css/app.css" rel="preload" as="style"><link href="js/app.js" rel="preload" as="script"><link href="css/app.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but my-tilda-cleaner doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script>function sendHeightToParent() {
-        const height = document.documentElement.scrollHeight;
-        window.parent.postMessage({ type: 'setHeight', height }, '*');
-        console.log(height, "height пересчет");
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="favicon.ico"><title>my-tilda-cleaner</title><link href="css/app.css" rel="preload" as="style"><link href="js/app.js" rel="preload" as="script"><link href="css/app.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but my-tilda-cleaner doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script>// function sendHeightToParent() {
+      //   const height = document.documentElement.scrollHeight;
+      //   window.parent.postMessage({ type: 'setHeight', height }, '*');
+      //   console.log(height, "height пересчет");
+      // }
+      function sendHeightToParent() {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            const height = document.documentElement.scrollHeight;
+            window.parent.postMessage({ type: 'setHeight', height }, '*');
+            console.log(height, 'height пересчет');
+          }, 0); // ⏱ даём браузеру отрисовать изменения
+        });
       }
-
       // ✅ debounce-функция (один вызов в 200 мс)
       let resizeTimeout;
       function debouncedSendHeight() {
