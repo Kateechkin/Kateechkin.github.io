@@ -7,4 +7,8 @@
 
       window.addEventListener('load', sendHeightToParent);
       window.addEventListener('resize', sendHeightToParent);
-      setInterval(sendHeightToParent, 1000);</script><script src="js/app.js"></script></body></html>
+      // Автообновление каждые 1.5 сек
+      setInterval(sendHeightToParent, 1500);
+
+      // Ручной вызов (на всякий случай)
+      window.sendHeightToParent = sendHeightToParent;</script><script src="js/app.js"></script></body></html>
